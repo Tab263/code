@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="fragments/partial :: page_head('The Bags Shop', 'none')" />
+
+<body class="stretched">
+
+	<div id="wrapper">
+
+		<div th:replace="fragments/header :: header">&nbsp;</div>
+
+		<section class="hero-wrap hero-wrap-2"
+			style="background-image: url('/assets/images/bg_3.jpg');"
+			data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div
+					class="row no-gutters slider-text align-items-end justify-content-center">
+					<div class="col-md-9 ftco-animate text-center mb-4">
+						<h1 class="mb-2 bread">Specialties</h1>
+						<p class="breadcrumbs">
+							<span class="mr-2"><a href="index.html">Home <i
+									class="ion-ios-arrow-forward"></i></a></span> <span>Table<i
+								class="ion-ios-arrow-forward"></i></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ftco-section">
+			<div class="container">
+				<div class="ftco-search">
+					<div class="card-body pt-0">
+
+						<table class="table">
+							<thead>
+								<tr>
+
+									<th>Work Date</th>
+									<th>Start Time</th>
+									<th>Zone</th>
+									<th>End Time</th>
+									<th>Start Time 2</th>
+									<th>End Time 2</th>
+									<th>Note</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="schedule : ${works}">
+
+									<td th:text="${schedule.workDate}"></td>
+									<td th:text="${schedule.startTime}"></td>
+									<td th:text="${schedule.category.categoryName}"></td>
+
+									<td th:text="${schedule.endTime}"></td>
+									<td th:text="${schedule.startTime1}"></td>
+									<td th:text="${schedule.endTime1}"></td>
+									<td th:text="${schedule.note}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+
+
+						<!--end::Table-->
+						<!--begin::Paginate-->
+						<div th:if="${totalPages > 1}">
+							<ul class="pagination">
+								<li
+									th:class="${currentPage > 1 ? 'page-item previous' : 'page-item previous disabled'}">
+									<a
+									th:href="@{${moduleURL} + '/page/' + ${currentPage - 1} + ${queryParams}}"
+									class="page-link"><i class="previous"></i></a>
+								</li>
+								<li th:each="i : ${#numbers.sequence(1, totalPages)}"
+									th:class="${currentPage != i ? 'page-item' : 'page-item active'}">
+									<a th:href="@{${moduleURL} + '/page/' + ${i} + ${queryParams}}"
+									class="page-link" th:text="${i}"></a>
+								</li>
+								<li
+									th:class="${currentPage < totalPages ? 'page-item next' : 'page-item next disabled' }">
+									<a
+									th:href="@{${moduleURL} + '/page/' + ${currentPage + 1} + ${queryParams}}"
+									class="page-link"><i class="next"></i></a>
+								</li>
+							</ul>
+						</div>
+						<!--end::Paginate-->
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<div th:replace="fragments/footer :: footer">&nbsp;</div>
+
+	</div>
+
+	<div id="gotoTop" class="bi-arrow-up"></div>
+
+	<div th:replace="fragments/partial :: page_script"></div>
+
+</body>
+
+</html>
+

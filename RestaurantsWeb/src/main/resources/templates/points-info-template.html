@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Invoice</title>
+</head>
+<body>
+	<h2>Order Invoice</h2>
+	<p>Hello,</p>
+	<p>
+		Your current reward points: <span th:text="${points}"></span>
+	</p>
+
+	<p>Your Order Invoice:</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Ingredient</th>
+				<th>Quantity</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="orderItem : ${orderItems}">
+				<td th:text="${orderItem.ingredient.ingredientName}"></td>
+				<td th:text="${orderItem.quantity}"></td>
+				<td th:text="${orderItem.price}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<p>
+		Total: <span th:text="${total1}"></span>
+	</p>
+	<p>
+		Discount: <span th:text="${orderDiscount}"></span>
+	</p>
+	<p>
+		Tips: <span th:text="${tips}"></span>
+	</p>
+	<p>
+		Tax: <span th:text="${tax}"></span>
+	</p>
+	<p>
+		Grand Total: <span th:text="${total}"></span>
+	</p>
+
+	<p>Thank you for your purchase!</p>
+</body>
+</html>
